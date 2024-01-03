@@ -6,6 +6,7 @@ directions to all the other pages/features.
 """
 
 import streamlit as st
+from script import *
 from streamlit_extras.switch_page_button import switch_page
 
 # Setting the page configurations
@@ -15,13 +16,7 @@ st.set_page_config(
 )
 # Top container
 with st.container():
-    top_column_1, top_column_2 = st.columns([4,1.5])
-    with top_column_1:
-        st.title("Hi, I'm :blue[Raveesh Yadav!]")
-        st.subheader("Tech students and an aspirant :blue[Data Engineer]")
-        
-    with top_column_2:
-        st.image("asset/img/self_img.PNG", width=250)
+    st.image("asset/img/Top_Banner.png")        
 st.divider()
 
 # Sidebar contact info
@@ -40,28 +35,94 @@ with st.container(border=True):
     if st.button("View and donwload resume"):
         switch_page("Resume")
 
-# Certifications container
+# Skills container
 with st.container(border=True):
-    st.header("Certifications")
-    certi_column1, certi_column2, certi_column3 = st.columns(3)
-    with certi_column1:
-        st.image("asset/img/certi/pcep.png", width=250)
-        st.subheader("PCEP")
+    st.header("Skills and Technologies")
+    skill_column1, skill_column2, skill_column3 = st.columns([2,3,2])
+    
+    # Languages
+    with skill_column1:
+        st.subheader("Languages")
+        sub_column1, sub_column2 = st.columns(2)
+        with sub_column1:
+            st.button("Python")
+            st.button("Java")
+            st.button("SQL")
+        with sub_column2:
+            st.button("C")
+            st.button("C++")
+            st.button("PigLatin")
 
-    with certi_column2:
-        st.image("asset/img/certi/GoldMan.png", width=350)
-        st.subheader("Goldman")
+    # Tools
+    with skill_column2:
+        st.subheader("Tools")
+        sub_column3, sub_column4, sub_column5 = st.columns(3)
+        with sub_column3:
+            st.button("Streamlit")
+            st.button("Microsoft Azure")
+            st.button("Postgres")
+        with sub_column4:
+            st.button("Hadoop")
+            st.button("MySQL")
+            st.button("Heroku")
+        with sub_column5:
+            st.button("Git/GitHub")
+            st.button("Visual Studio Code")
+            st.button("Airtable")
 
-    with certi_column3:
-        st.image("asset/img/certi/AWS-Cloud.png", width=250)
-        st.subheader("AWS")
-
-    if st.button("View all certifications"):
-        switch_page("Certifications")
+    # Tools
+    with skill_column3:
+        st.subheader("Skills")
+        sub_column6, sub_column7 = st.columns(2)
+        with sub_column6:
+            st.button("Big Data")
+            st.button("Data Analysis")
+            st.button("Data Visualisation")
+        with sub_column7:
+            st.button("Map Reduce")
+            st.button("OOP")
 
 # Projects container
 with st.container(border=True):
     st.header("Projects")
-    st.markdown("Projects container")
-    if st.button("View all projects"):
-        switch_page("Projects")
+    project_tab1, project_tab2 = st.tabs(["Slide 1", "Slide 2"])
+    # Columns for each 
+    with project_tab1:
+        p1_column1, p1_column2, p1_column3 = st.columns(3)
+        with p1_column1:
+            st.image("asset/img/proj/Spotify.png")
+            st.header("Spotify Recommendations")
+            st.markdown("REcomends songs for spotify")
+            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+
+        with p1_column2:
+            st.image("asset/img/proj/Discord.png")
+            st.header("Sentinel-Discord Bot")
+            st.markdown("Discord Bot")
+            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+
+        with p1_column3:
+            st.image("asset/img/proj/Mapreduce.png")
+            st.header("Map Reduce Programs")
+            st.markdown("Map Recuce programs")
+            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+
+    with project_tab2:
+        p2_column1, p2_column2, p2_column3 = st.columns(3)
+        with p2_column1:
+            st.image("asset/img/proj/Cricket.png")
+            st.header("CricBot-Discord Bot")
+            st.markdown("Cricket playing bot")
+            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+
+        with p2_column2:
+            st.image("asset/img/proj/Clock.png")
+            st.header("Clock using Python")
+            st.markdown("Clock with timer, stopwatch etc.")
+            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+
+        with p2_column3:
+            st.image("asset/img/proj/Football.png")
+            st.header("Football prediction")
+            st.markdown("Football prediction")
+            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
