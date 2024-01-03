@@ -6,7 +6,6 @@ directions to all the other pages/features.
 """
 
 import streamlit as st
-from script import *
 from streamlit_extras.switch_page_button import switch_page
 
 # Setting the page configurations
