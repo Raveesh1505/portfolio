@@ -6,6 +6,7 @@ directions to all the other pages/features.
 """
 
 import streamlit as st
+import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
 # Setting the page configurations
@@ -15,7 +16,7 @@ st.set_page_config(
 )
 # Top container
 with st.container():
-    st.image("asset/img/Top_Banner.png")        
+    st.image("asset/img/Top_Banner.png")
 st.divider()
 
 # Sidebar contact info
@@ -84,44 +85,60 @@ with st.container(border=True):
 # Projects container
 with st.container(border=True):
     st.header("Projects")
-    project_tab1, project_tab2 = st.tabs(["Slide 1", "Slide 2"])
-    # Columns for each 
+    project_tab1, project_tab2, project_tab3 = st.tabs(["Slide 1", "Slide 2", "View all projects"]) 
+
+    # Slide 1 for projects
     with project_tab1:
+        # Columns for each
         p1_column1, p1_column2, p1_column3 = st.columns(3)
         with p1_column1:
             st.image("asset/img/proj/Spotify.png")
             st.header("Spotify Recommendations")
-            st.markdown("REcomends songs for spotify")
+            st.markdown("Spotify recommendations using machine learning and PySpark. Analyses song taste using ML model and predicts the likeability of any song entered.")
             st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
 
         with p1_column2:
             st.image("asset/img/proj/Discord.png")
             st.header("Sentinel-Discord Bot")
-            st.markdown("Discord Bot")
-            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+            st.markdown("Sentinel is a powerful, efficient and fully secure password managing Discord Bot! With password being stored as Cypher-text, sentinel assures a secure environment for your password storage.")
+            st.link_button("View project", "https://github.com/sentinel-pw/sentinel-discord")
 
         with p1_column3:
             st.image("asset/img/proj/Mapreduce.png")
             st.header("Map Reduce Programs")
-            st.markdown("Map Recuce programs")
-            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+            st.markdown("Problems solved using MapReduce model. Solved problems of titanic prediction and odd even prediction of a number entered by the user.")
+            st.link_button("View project", "https://github.com/Raveesh1505?tab=repositories&q=Mapreduce-&type=&language=&sort=")
 
+    # Slide 2 for projects
     with project_tab2:
+        # Columns for each
         p2_column1, p2_column2, p2_column3 = st.columns(3)
         with p2_column1:
             st.image("asset/img/proj/Cricket.png")
             st.header("CricBot-Discord Bot")
-            st.markdown("Cricket playing bot")
-            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+            st.markdown("Cricbot is a game bot for Discord that plays cricket with the user.")
+            st.link_button("View project", "https://github.com/Raveesh1505/CricBot")
 
         with p2_column2:
             st.image("asset/img/proj/Clock.png")
             st.header("Clock using Python")
-            st.markdown("Clock with timer, stopwatch etc.")
-            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+            st.markdown("Clock app using Python with various features like stopwatch, timer and alarm")
+            st.link_button("View project", "https://github.com/Raveesh1505/clock")
 
         with p2_column3:
             st.image("asset/img/proj/Football.png")
             st.header("Football prediction")
-            st.markdown("Football prediction")
-            st.link_button("View project", "https://github.com/Raveesh1505/Spotify-recommendations")
+            st.markdown("Prediction for qulification of a certain football team after a major shakeup in the lineup using machine learning. Collected historical data using web scrapping.")
+            st.link_button("View project", "https://github.com/Raveesh1505/Football-Prediction")
+
+    with project_tab3:
+        # Columns for each
+        projectData = pd.read_csv("asset/docs/projects.csv", index_col=0)
+        st.dataframe(
+            data=projectData,
+            column_config={
+                "Link" : st.column_config.LinkColumn(
+                    "Github Link"
+                )
+            }
+        )
