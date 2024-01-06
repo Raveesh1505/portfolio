@@ -26,7 +26,7 @@ if __name__ == "__main__":
         layout="wide"
     )
     # Hiding pages from sidebar menu
-    #hide_pages(["Resume", "Email"])
+    hide_pages(["Resume", "Email"])
     
     # Top container
     with st.container():
