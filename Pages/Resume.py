@@ -7,11 +7,16 @@ with an option to donload the PDF format of the resume.
 
 import streamlit as st
 import webbrowser
+from streamlit_extras.switch_page_button import switch_page
 from streamlit_option_menu import option_menu
+from st_pages import hide_pages
 
 with st.container():
     st.image("asset/img/Resume-Banner.png")
 st.divider()
+
+# Hiding pages from sidebar menu
+hide_pages(["Resume", "Email"])
 
 # Sidebar contact info
 with st.sidebar:
@@ -30,9 +35,9 @@ with st.sidebar:
     elif selected == "GitHub":
         webbrowser.open_new_tab("http://github.com/Raveesh1505")
     elif selected == "Email":
-        st.success("Email at: raveeshyadav8@outlook.com")
-# Tabs for different features
+        switch_page("Email")
 
+# Tabs for different features
 tab1, tab2, tab3 = st.tabs(["Work Experience", "Education History", "Download Resume"])
 
 # Work experince
