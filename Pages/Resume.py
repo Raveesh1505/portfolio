@@ -6,6 +6,8 @@ with an option to donload the PDF format of the resume.
 """
 
 import streamlit as st
+import webbrowser
+from streamlit_option_menu import option_menu
 
 with st.container():
     st.image("asset/img/Resume-Banner.png")
@@ -13,12 +15,22 @@ st.divider()
 
 # Sidebar contact info
 with st.sidebar:
-    st.title('Contact info')
-    st.link_button("LinkedIn", 'https://www.linkedin.com/in/raveesh-yadav/')
-    st.link_button("Github", 'http://github.com/Raveesh1505')
-    if st.button("Email"):
-        st.success("Email at: raveeshyadav8@outlook.com")
+    selected = option_menu(
+        "Get in touch", [None, "LinkedIn", "GitHub", "Email"],
+        icons=[" ", "linkedin", "github", "envelope"], 
+        menu_icon="phone",
+        styles={
+            "nav-link" : {"--hover-color" : "#d080f2"},
+            "nav-link-selected" : {"background-color" : "#ab0af0"}
+        }
+    )
 
+    if selected == "LinkedIn":
+        webbrowser.open_new_tab("https://www.linkedin.com/in/raveesh-yadav/")
+    elif selected == "GitHub":
+        webbrowser.open_new_tab("http://github.com/Raveesh1505")
+    elif selected == "Email":
+        st.success("Email at: raveeshyadav8@outlook.com")
 # Tabs for different features
 
 tab1, tab2, tab3 = st.tabs(["Work Experience", "Education History", "Download Resume"])
