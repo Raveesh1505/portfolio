@@ -5,11 +5,17 @@ Resume page contains the work experience and education detials
 with an option to donload the PDF format of the resume.
 """
 
+import os
 import streamlit as st
 import webbrowser
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_option_menu import option_menu
 from st_pages import hide_pages
+from script import read_airtable, clean_work_data
+
+# Reading env vars
+token = os.environ["AIRTABLE_API_KEY"]
+baseID = os.environ["BASEID"]
 
 with st.container():
     st.image("asset/img/Resume-Banner.png")
@@ -43,11 +49,22 @@ tab1, tab2, tab3 = st.tabs(["Work Experience", "Education History", "Download Re
 # Work experince
 with tab1:
     with st.container(border=True):
-        st.header("Intern Data Analayst at M3Bi India Private Ltd.")
-        st.caption("Decemeber 2023 - January 2024")
-        st.markdown("1. Used SQL to extract data from relational database. The extracted data was used for analysis.\n2. Performed EDA on extracted data to find out useful insights using Python and it's various libraries.\n3. Created necessary dashboards on Tableau to visualise the analysis.")
+        # st.header("Intern Data Analayst at M3Bi India Private Ltd.")
+        # st.caption("Decemeber 2023 - January 2024")
+        # st.markdown("1. Used SQL to extract data from relational database. The extracted data was used for analysis.\n2. Performed EDA on extracted data to find out useful insights using Python and it's various libraries.\n3. Created necessary dashboards on Tableau to visualise the analysis.")
 
-        st.divider()
+        # st.divider()
+        with st.spinner("Loading work experince"):
+            workData = read_airtable(token, baseID, "Work experience")
+            cleanWorkData = clean_work_data(workData)
+
+        for jobs in range(0, len(cleanWorkData)):
+            st.header(cleanWorkData.iloc[jobs, 0])
+            st.caption(cleanWorkData.iloc[jobs, 1])
+            st.markdown(cleanWorkData.iloc[jobs, 2])
+
+            st.divider()
+
 
 # Education backgrounds
 with tab2:

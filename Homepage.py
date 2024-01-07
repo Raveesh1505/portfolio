@@ -159,9 +159,10 @@ if __name__ == "__main__":
         with project_tab3:
             # Display all projects using airtable
             with st.spinner("Loading all current projects"):
-                projectsData = read_airtable(TOKEN, BASEID, "Projects")
+                projectsData = read_airtable(TOKEN, BASEID, "Projects") # Read data from airtable
+                cleanProjectsData = clean_projects_data(projectsData)   # Clean the extracted data
             st.dataframe(
-                data=projectsData,
+                data=cleanProjectsData,
                 column_config={
                     "Link" : st.column_config.LinkColumn(
                         "Github Link"
